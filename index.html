@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T.M.wood - Handcrafted Design & Woodwork</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-light: #f5f5f0;
+            --accent: #a67c52;
+            --accent-light: #d4af85;
+            --text-dark: #2a2a2a;
+            --text-light: #666;
+            --border-color: #e0e0e0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(245, 245, 240, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 2rem;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #fafaf8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(166, 124, 82, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .hero-points {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .hero-points li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .hero-points li::before {
+            content: '◆';
+            color: var(--accent);
+            font-size: 0.6rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 2px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(26, 26, 26, 0.15);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--primary-dark);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-dark);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Selected Work Section */
+        .selected-work {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .work-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            border-radius: 2px;
+            cursor: pointer;
+            group: work-item;
+        }
+
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .work-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .work-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(26, 26, 26, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .work-item:hover .work-overlay {
+            opacity: 1;
+        }
+
+        .work-overlay h3 {
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .work-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .see-all {
+            text-align: center;
+        }
+
+        .see-all a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: gap 0.3s ease;
+        }
+
+        .see-all a:hover {
+            gap: 1.2rem;
+        }
+
+        /* Meet the Maker Section */
+        .meet-maker {
+            padding: 6rem 2rem;
+            background: var(--primary-light);
+        }
+
+        .maker-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .maker-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            aspect-ratio: 3/4;
+        }
+
+        .maker-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .maker-text h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .maker-text p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .maker-highlight {
+            background: rgba(166, 124, 82, 0.1);
+            padding: 1.5rem;
+            border-left: 3px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 2px;
+        }
+
+        .maker-highlight strong {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .maker-content {
+                grid-template-columns: 1fr;
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: var(--primary-dark);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--accent);
+            font-weight: 600;
+            padding: 0.9rem 2rem;
+            border-radius: 2px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-white:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            background: var(--primary-dark);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Utility */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 45px;
+            height: 45px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 999;
+            font-size: 1.2rem;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">T.M.wood</a>
+        <ul>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#maker">About</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="quote.html">Get Quote</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Handcrafted Design & Woodwork</h1>
+            <p class="hero-subtitle">Every piece is a reflection of intentional craftsmanship and precision</p>
+            
+            <ul class="hero-points">
+                <li>Striving for perfection in every detail</li>
+                <li>Design remains the guiding principle</li>
+                <li>Every step from sketch to finish, same hands</li>
+            </ul>
+
+            <div class="cta-group">
+                <a href="portfolio.html" class="btn btn-primary">View Portfolio</a>
+                <a href="quote.html" class="btn btn-secondary">Get a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selected Work Section -->
+    <section id="work" class="selected-work">
+        <div class="section-header">
+            <h2>Selected Work</h2>
+            <p>A curated collection of recent projects</p>
+        </div>
+
+        <div class="work-grid">
+            <div class="work-item">
+                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=500&fit=crop" alt="Work 1">
+                <div class="work-overlay">
+                    <h3>Custom Reception Desk</h3>
+                    <p>Walnut & Brass</p>
+                </div>
+            </div>
+
+            <div class="work-item">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop" alt="Work 2">
+                <div class="work-overlay">
+                    <h3>Shelving System</h3>
+                    <p>Oak & Steel</p>
+                </div>
+            </div>
+
+            <div class="work-item">
+                <img src="https://images.unsplash.com/photo-1578778712028-1aa500764cbd?w=500&h=500&fit=crop" alt="Work 3">
+                <div class="work-overlay">
+                    <h3>Statement Table</h3>
+                    <p>Reclaimed Pine</p>
+                </div>
+            </div>
+
+            <div class="work-item">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500&h=500&fit=crop" alt="Work 4">
+                <div class="work-overlay">
+                    <h3>Bar Installation</h3>
+                    <p>Mixed Materials</p>
+                </div>
+            </div>
+
+            <div class="work-item">
+                <img src="https://images.unsplash.com/photo-1564069114553-7215e50023cb?w=500&h=500&fit=crop" alt="Work 5">
+                <div class="work-overlay">
+                    <h3>Kitchen Cabinetry</h3>
+                    <p>Maple & Walnut</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="see-all">
+            <a href="portfolio.html">See All Work <span>→</span></a>
+        </div>
+    </section>
+
+    <!-- Meet the Maker Section -->
+    <section id="maker" class="meet-maker">
+        <div class="maker-content">
+            <div class="maker-image">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=650&fit=crop" alt="Toth Mathias">
+            </div>
+
+            <div class="maker-text">
+                <h2>Meet the Maker</h2>
+                
+                <p>I'm <strong>Toth Mathias</strong>, a self-taught designer and craftsman dedicated to creating pieces that transcend trends and stand the test of time.</p>
+
+                <div class="maker-highlight">
+                    <strong>Design-Oriented</strong><br>
+                    Every project begins with intention. I believe design isn't decoration—it's the foundation of everything that works.
+                </div>
+
+                <p>My Christian faith grounds my approach to craftsmanship, reminding me that quality work is an act of stewardship. I'm relentless in my pursuit of perfection, because halfway done is the same as not done at all.</p>
+
+                <div class="maker-highlight">
+                    <strong>Sourced Locally, Processed Locally</strong><br>
+                    I work with materials felled from our family farm and processed in our local workshop. Every piece carries the story of where it came from.
+                </div>
+
+                <p>From the first sketch to the final finish, the same hands guide every project. There's no delegation, no compromise—just commitment to excellence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Bring Your Vision to Life?</h2>
+        <p>Whether you have a clear idea or just a spark of inspiration, let's work together to create something exceptional.</p>
+        
+        <div class="cta-buttons">
+            <a href="quote.html" class="btn-white">Get a Quote</a>
+            <a href="quote.html" class="btn-white" style="background: transparent; border: 2px solid white; color: white;">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 T.M.wood. All rights reserved. Handcrafted with precision in Romania.</p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">↑</button>
+
+    <script>
+        // Scroll to Top Button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
